@@ -96,109 +96,11 @@ const PopularCourses = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {courses.map(course => (
           <div key={course.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-            {/* Course Image */}
-            <div className={`${course.bgColor} p-6 h-48 flex items-center justify-center`}>
-              {course.id === 1 && (
-                <div className="relative h-32 w-full">
-                  <div className="absolute transform -rotate-12 left-6">
-                    <div className="w-12 h-12 bg-white rounded-md shadow-md flex items-center justify-center">
-                      <span className="text-gray-700 text-lg">📊</span>
-                    </div>
-                  </div>
-                  <div className="absolute right-12 top-0">
-                    <div className="w-12 h-12 bg-white rounded-md shadow-md flex items-center justify-center">
-                      <span className="text-gray-700 text-lg">📄</span>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
-                    <div className="w-20 h-20 rounded-full bg-white shadow-lg overflow-hidden">
-                      <div className="h-full w-full flex items-end justify-center">
-                        <div className="w-16 h-10 bg-black rounded-t-full"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-4 right-10">
-                    <div className="w-12 h-12 bg-green-400 rounded-full shadow-md flex items-center justify-center">
-                      <span className="text-white text-lg">✓</span>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-1 right-1">
-                    <div className="w-10 h-10 bg-yellow-300 rounded-full shadow-md"></div>
-                  </div>
-                </div>
-              )}
-              
-              {course.id === 2 && (
-                <div className="h-32 w-full relative">
-                  <div className="absolute left-0 top-0">
-                    <div className="w-12 h-12 bg-red-500 rounded-md flex items-center justify-center">
-                      <span className="text-white">🔒</span>
-                    </div>
-                  </div>
-                  <div className="absolute left-1/4 bottom-0">
-                    <div className="w-16 h-6 bg-orange-300 rounded-full"></div>
-                  </div>
-                  <div className="absolute right-1/4 h-full flex items-center">
-                    <div className="flex">
-                      <div className="w-14 h-24 bg-white rounded-md shadow-md flex flex-col items-center justify-center">
-                        <div className="w-10 h-3 bg-amber-400 mb-1"></div>
-                        <div className="w-10 h-3 bg-blue-400"></div>
-                      </div>
-                      <div className="flex items-center h-full">
-                        <div className="h-16 w-10 flex flex-col space-y-1 ml-2">
-                          <div className="h-3 w-full bg-green-500 rounded-full"></div>
-                          <div className="h-3 w-full bg-blue-500 rounded-full"></div>
-                          <div className="h-3 w-full bg-red-500 rounded-full"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute right-0 top-1/3">
-                    <div className="h-16 w-24 bg-white rounded-md shadow-md flex items-center justify-center">
-                      <div className="w-16 h-8">
-                        <div className="w-full h-2 bg-gray-400 rounded-full mb-1"></div>
-                        <div className="w-4/5 h-2 bg-gray-400 rounded-full mb-1"></div>
-                        <div className="w-3/5 h-2 bg-gray-400 rounded-full"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <div className="flex">
-                      <div className="w-8 h-16 bg-blue-50 border-2 border-blue-200 rounded-l-md flex items-center justify-center">
-                        <span className="text-blue-500 text-sm">👩</span>
-                      </div>
-                      <div className="w-8 h-16 bg-blue-50 border-2 border-blue-200 rounded-r-md flex items-center justify-center">
-                        <span className="text-blue-500 text-sm">👨</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-              
-              {course.id === 3 && (
-                <div className="h-32 w-32 bg-yellow-300 rounded-full flex items-center justify-center overflow-hidden shadow-md">
-                  <div className="relative w-full h-full">
-                    <div className="absolute top-1/3 left-1/4 w-3 h-3 bg-black rounded-full"></div>
-                    <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-black rounded-full"></div>
-                    <div className="absolute bottom-1/3 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-black rounded-t-full"></div>
-                  </div>
-                </div>
-              )}
-              
-              {course.id === 4 && (
-                <div className="h-32 w-32 relative">
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full"></div>
-                  <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
-                    <div className="w-24 h-24 bg-blue-800 rounded-t-full overflow-hidden">
-                      <div className="h-full w-full relative">
-                        <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-yellow-400 rounded-full"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
+            {/* Simplified Course Image */}
+            <div className="h-48 bg-gray-200">
+              <img src={course.image} alt={course.title} className="w-full h-full object-cover" />
             </div>
-            
+
             {/* Course Info */}
             <div className="p-4 flex flex-col flex-grow">
               <div className="flex justify-between items-center mb-4">
