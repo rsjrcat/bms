@@ -1,4 +1,6 @@
 import Navbar from "./components/layout/Navbar";
+import Newsletter from "./components/layout/Newsletter";
+import Footer from "./components/layout/Footer";
 import FoundationalSkillsSection from "./pages/home/Certificates";
 import HeroSection from "./pages/home/HeroSection";
 import PopularCourses from "./pages/home/PopularCourses";
@@ -12,6 +14,8 @@ export default function App() {
       <PopularCourses />
       <FoundationalSkillsSection />
       <CoachingTestimonials />
-      </div>
+      <Newsletter />
+      <Footer />
+    </div>
   );
 }
