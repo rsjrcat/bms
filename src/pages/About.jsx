@@ -1,8 +1,37 @@
 import React from 'react';
 
 export default function About() {
+  const stats = [
+    { label: "Active Students", value: "50,000+" },
+    { label: "Course Completion Rate", value: "94%" },
+    { label: "Expert Instructors", value: "200+" },
+    { label: "Countries Reached", value: "150+" }
+  ];
+
+  const team = [
+    {
+      name: "Dr. Sarah Johnson",
+      role: "CEO & Founder",
+      image: "https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg",
+      bio: "20+ years experience in education technology"
+    },
+    {
+      name: "Michael Chen",
+      role: "Head of Education",
+      image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg",
+      bio: "Former Stanford Professor"
+    },
+    {
+      name: "Emily Rodriguez",
+      role: "Chief Technology Officer",
+      image: "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg",
+      bio: "15+ years in EdTech development"
+    }
+  ];
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">
+      {/* Hero Section */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">About Onlearn</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -10,6 +39,7 @@ export default function About() {
         </p>
       </div>
 
+      {/* Mission Section */}
       <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
         <div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
@@ -32,6 +62,19 @@ export default function About() {
         </div>
       </div>
 
+      {/* Stats Section */}
+      <div className="bg-teal-50 rounded-lg p-8 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-4xl font-bold text-teal-600 mb-2">{stat.value}</div>
+              <div className="text-gray-600">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Features Section */}
       <div className="grid md:grid-cols-3 gap-8 mb-16">
         <div className="bg-white p-6 rounded-lg shadow-md">
           <h3 className="text-xl font-bold text-gray-900 mb-3">Expert Instructors</h3>
@@ -53,6 +96,7 @@ export default function About() {
         </div>
       </div>
 
+      {/* Values Section */}
       <div className="bg-teal-50 rounded-lg p-8 mb-16">
         <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Our Values</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -73,6 +117,38 @@ export default function About() {
             <p className="text-gray-600">Building a supportive learning environment</p>
           </div>
         </div>
+      </div>
+
+      {/* Team Section */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Our Leadership Team</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {team.map((member, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                <p className="text-teal-600 font-medium mb-2">{member.role}</p>
+                <p className="text-gray-600">{member.bio}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="bg-teal-600 rounded-lg p-8 text-center">
+        <h2 className="text-3xl font-bold text-white mb-4">Ready to Start Learning?</h2>
+        <p className="text-teal-100 mb-6 max-w-2xl mx-auto">
+          Join our community of learners and start your journey towards success today.
+        </p>
+        <button className="bg-white text-teal-600 px-8 py-3 rounded-lg font-medium hover:bg-teal-50 transition-colors">
+          Browse Courses
+        </button>
       </div>
     </div>
   );
