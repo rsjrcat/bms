@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, User, LogOut } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [scrolled, setScrolled] = useState(false);
+    const location = useLocation();
 
     // Toggle mobile menu
     const toggleMenu = () => {
@@ -36,27 +38,39 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-16">
                     {/* Logo and Brand */}
                     <div className="flex-shrink-0 flex items-center">
-                        <a href="/" className="flex items-center">
+                        <Link to="/" className="flex items-center">
                             <img src="https://s3u.tmimgcdn.com/u37752224/40b6d70b252d68b7bf449eb2804a627c.gif" alt="Onlearn Logo" className="h-10 w-10 text-teal-500" />
                             <span className="ml-2 text-xl font-semibold text-teal-700">onlearn</span>
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-center space-x-4">
-                            <a href="/" className="text-teal-600 hover:text-teal-800 px-3 py-2 rounded-md text-sm font-medium">
+                            <Link
+                                to="/"
+                                className={`${location.pathname === '/' ? 'text-teal-600' : 'text-gray-600'} hover:text-teal-800 px-3 py-2 rounded-md text-sm font-medium`}
+                            >
                                 Home
-                            </a>
-                            <a href="/courses" className="text-gray-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">
+                            </Link>
+                            <Link
+                                to="/courses"
+                                className={`${location.pathname === '/courses' ? 'text-teal-600' : 'text-gray-600'} hover:text-teal-800 px-3 py-2 rounded-md text-sm font-medium`}
+                            >
                                 Courses
-                            </a>
-                            <a href="/about" className="text-gray-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">
+                            </Link>
+                            <Link
+                                to="/about"
+                                className={`${location.pathname === '/about' ? 'text-teal-600' : 'text-gray-600'} hover:text-teal-800 px-3 py-2 rounded-md text-sm font-medium`}
+                            >
                                 About
-                            </a>
-                            <a href="/contact" className="text-gray-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">
+                            </Link>
+                            <Link
+                                to="/contact"
+                                className={`${location.pathname === '/contact' ? 'text-teal-600' : 'text-gray-600'} hover:text-teal-800 px-3 py-2 rounded-md text-sm font-medium`}
+                            >
                                 Contact
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
@@ -64,10 +78,10 @@ const Navbar = () => {
                     <div className="hidden md:flex items-center space-x-3">
                         {isLoggedIn ? (
                             <>
-                                <a href="/dashboard" className="flex items-center text-gray-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">
+                                <Link to="/dashboard" className="flex items-center text-gray-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">
                                     <User size={18} className="mr-1" />
                                     Dashboard
-                                </a>
+                                </Link>
                                 <button
                                     onClick={toggleLogin}
                                     className="flex items-center text-gray-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium"
@@ -78,15 +92,15 @@ const Navbar = () => {
                             </>
                         ) : (
                             <>
-                                <a href="/login" className="text-gray-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">
+                                <Link to="/login" className="text-gray-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">
                                     LOG IN
-                                </a>
-                                <a
-                                    href="/signup"
+                                </Link>
+                                <Link
+                                    to="/signup"
                                     className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-md text-sm font-medium"
                                 >
                                     SIGN UP
-                                </a>
+                                </Link>
                             </>
                         )}
                     </div>
@@ -110,42 +124,42 @@ const Navbar = () => {
             {/* Mobile Menu */}
             <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
-                    <a
-                        href="/"
-                        className="text-teal-600 hover:bg-teal-50 block px-3 py-2 rounded-md text-base font-medium"
+                    <Link
+                        to="/"
+                        className={`${location.pathname === '/' ? 'text-teal-600' : 'text-gray-600'} hover:bg-teal-50 block px-3 py-2 rounded-md text-base font-medium`}
                     >
                         Home
-                    </a>
-                    <a
-                        href="/courses"
-                        className="text-gray-600 hover:bg-teal-50 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium"
+                    </Link>
+                    <Link
+                        to="/courses"
+                        className={`${location.pathname === '/courses' ? 'text-teal-600' : 'text-gray-600'} hover:bg-teal-50 block px-3 py-2 rounded-md text-base font-medium`}
                     >
                         Courses
-                    </a>
-                    <a
-                        href="/about"
-                        className="text-gray-600 hover:bg-teal-50 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium"
+                    </Link>
+                    <Link
+                        to="/about"
+                        className={`${location.pathname === '/about' ? 'text-teal-600' : 'text-gray-600'} hover:bg-teal-50 block px-3 py-2 rounded-md text-base font-medium`}
                     >
                         About
-                    </a>
-                    <a
-                        href="/contact"
-                        className="text-gray-600 hover:bg-teal-50 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium"
+                    </Link>
+                    <Link
+                        to="/contact"
+                        className={`${location.pathname === '/contact' ? 'text-teal-600' : 'text-gray-600'} hover:bg-teal-50 block px-3 py-2 rounded-md text-base font-medium`}
                     >
                         Contact
-                    </a>
+                    </Link>
 
                     {/* Mobile Auth */}
                     <div className="border-t border-gray-200 pt-4 pb-2">
                         {isLoggedIn ? (
                             <>
-                                <a
-                                    href="/dashboard"
+                                <Link
+                                    to="/dashboard"
                                     className="flex items-center text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium"
                                 >
                                     <User size={18} className="mr-2" />
                                     Dashboard
-                                </a>
+                                </Link>
                                 <button
                                     onClick={toggleLogin}
                                     className="flex w-full items-center text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium"
@@ -156,18 +170,18 @@ const Navbar = () => {
                             </>
                         ) : (
                             <>
-                                <a
-                                    href="/login"
+                                <Link
+                                    to="/login"
                                     className="block text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium"
                                 >
                                     LOG IN
-                                </a>
-                                <a
-                                    href="/signup"
+                                </Link>
+                                <Link
+                                    to="/signup"
                                     className="block bg-teal-600 hover:bg-teal-700 text-white mt-2 px-3 py-2 rounded-md text-base font-medium text-center"
                                 >
                                     SIGN UP
-                                </a>
+                                </Link>
                             </>
                         )}
                     </div>
