@@ -32,13 +32,8 @@ export default function About() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">
       {/* Hero Section */}
-<<<<<<< HEAD
       <div className="mt-8 text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">About BMS Academey</h1>
-=======
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">About Onlearn</h1>
->>>>>>> 8d86a8a88b0a92ea228b71aa30fde1d2de30bad6
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Empowering learners worldwide with quality education and practical skills for success
         </p>
@@ -49,11 +44,7 @@ export default function About() {
         <div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
           <p className="text-gray-600 mb-6">
-<<<<<<< HEAD
             At BMS Academey, we believe that quality education should be accessible to everyone. Our mission
-=======
-            At Onlearn, we believe that quality education should be accessible to everyone. Our mission
->>>>>>> 8d86a8a88b0a92ea228b71aa30fde1d2de30bad6
             is to provide world-class learning experiences that empower individuals to achieve their
             full potential and succeed in their chosen careers.
           </p>
