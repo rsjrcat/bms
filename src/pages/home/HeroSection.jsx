@@ -137,23 +137,23 @@ const HeroSection = () => {
                                     </svg>
 
                                     {/* Stats Card */}
-                                   <div className="bg-white rounded-xl p-3 absolute bottom-10 left-10 mb-3 shadow">
-  <div className="flex -space-x-2 mb-2">
-    {["R", "S", "A", "P"].map((initial, index) => (
-      <div
-        key={index}
-        className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-semibold border border-white"
-        style={{
-          backgroundColor: ['#F97316', '#3B82F6', '#10B981', '#EF4444'][index], // custom colors for each
-        }}
-      >
-        {initial}
-      </div>
-    ))}
-  </div>
-  <div className="text-gray-800 font-bold text-xl">70,324+</div>
-  <div className="text-gray-500">Students Preparing with us</div>
-</div>
+                                    <div className="bg-white rounded-xl p-3 absolute bottom-10 left-10 mb-3 shadow">
+                                        <div className="flex -space-x-2 mb-2">
+                                            {["R", "S", "A", "P"].map((initial, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-semibold border border-white"
+                                                    style={{
+                                                        backgroundColor: ['#F97316', '#3B82F6', '#10B981', '#EF4444'][index], // custom colors for each
+                                                    }}
+                                                >
+                                                    {initial}
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="text-gray-800 font-bold text-xl">7,324+</div>
+                                        <div className="text-gray-500">Students Preparing with us</div>
+                                    </div>
 
                                 </div>
                             </div>
