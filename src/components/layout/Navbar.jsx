@@ -37,8 +37,8 @@ const Navbar = () => {
                     {/* Logo and Brand */}
                     <div className="flex-shrink-0 flex items-center">
                         <a href="/" className="flex items-center">
-                            <img src="https://s3u.tmimgcdn.com/u37752224/40b6d70b252d68b7bf449eb2804a627c.gif" alt="Onlearn Logo" className="h-10 w-10 text-teal-500" />
-                            <span className="ml-2 text-xl font-semibold text-teal-700">onlearn</span>
+                            <img src="https://s3u.tmimgcdn.com/u37752224/40b6d70b252d68b7bf449eb2804a627c.gif" alt="BMS Academey Logo" className="h-10 w-10 text-teal-500" />
+                            <span className="ml-2 text-xl font-semibold text-teal-700">BMS Academey</span>
                         </a>
                     </div>
 

@@ -6,8 +6,8 @@ import img2 from '../../assets/img2.png';
 const HeroSection = () => {
     return (
         <section className="">
-            <div className="container max-w-7xl  mx-auto px-4 py-12 md:py-24">
-                <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="container  max-w-7xl  mx-auto px-4 py-12 md:py-24">
+                <div className="mt-8 flex flex-col lg:flex-row items-center gap-12">
                     {/* Left Content */}
                     <div className="w-full lg:w-5/12">
                         <div className="flex flex-col gap-8">
