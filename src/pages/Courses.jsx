@@ -84,7 +84,11 @@ export default function Courses() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">
       {/* Hero Section */}
+<<<<<<< HEAD
       <div className="mt-8 text-center mb-12">
+=======
+      <div className="text-center mb-12">
+>>>>>>> 8d86a8a88b0a92ea228b71aa30fde1d2de30bad6
         <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Courses</h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Explore our wide range of courses designed to help you achieve your goals

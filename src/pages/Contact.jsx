@@ -44,7 +44,11 @@ export default function Contact() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">
       {/* Hero Section */}
+<<<<<<< HEAD
       <div className="mt-8 text-center mb-12">
+=======
+      <div className="text-center mb-12">
+>>>>>>> 8d86a8a88b0a92ea228b71aa30fde1d2de30bad6
         <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
@@ -66,7 +70,11 @@ export default function Contact() {
         <div className="bg-white p-6 rounded-lg shadow-md text-center">
           <Mail className="w-8 h-8 text-teal-600 mx-auto mb-4" />
           <h3 className="font-semibold mb-2">Email Us</h3>
+<<<<<<< HEAD
           <p className="text-gray-600">info@BMS Academey.com</p>
+=======
+          <p className="text-gray-600">info@onlearn.com</p>
+>>>>>>> 8d86a8a88b0a92ea228b71aa30fde1d2de30bad6
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md text-center">
           <Clock className="w-8 h-8 text-teal-600 mx-auto mb-4" />
