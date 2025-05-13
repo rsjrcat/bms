@@ -9,13 +9,8 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center mb-4">
-<<<<<<< HEAD
               <img src="https://s3u.tmimgcdn.com/u37752224/40b6d70b252d68b7bf449eb2804a627c.gif" alt="BMS Academey Logo" className="h-8 w-8" />
               <span className="ml-2 text-xl font-semibold text-white">BMS Academey</span>
-=======
-              <img src="https://s3u.tmimgcdn.com/u37752224/40b6d70b252d68b7bf449eb2804a627c.gif" alt="Onlearn Logo" className="h-8 w-8" />
-              <span className="ml-2 text-xl font-semibold text-white">onlearn</span>
->>>>>>> 8d86a8a88b0a92ea228b71aa30fde1d2de30bad6
             </div>
             <p className="text-sm mb-4">
               Empowering learners worldwide with quality education and practical skills for success.
@@ -65,22 +60,14 @@ const Footer = () => {
               <li>1234 Education Ave</li>
               <li>Learning City, ED 12345</li>
               <li>Phone: (123) 456-7890</li>
-<<<<<<< HEAD
               <li>Email: info@BMS Academey.com</li>
-=======
-              <li>Email: info@onlearn.com</li>
->>>>>>> 8d86a8a88b0a92ea228b71aa30fde1d2de30bad6
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-sm text-center">
-<<<<<<< HEAD
           <p>&copy; {new Date().getFullYear()} BMS Academey. All rights reserved.</p>
-=======
-          <p>&copy; {new Date().getFullYear()} Onlearn. All rights reserved.</p>
->>>>>>> 8d86a8a88b0a92ea228b71aa30fde1d2de30bad6
         </div>
       </div>
     </footer>
