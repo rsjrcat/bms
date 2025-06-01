@@ -7,8 +7,8 @@ import HeroSection2 from "./home/HeroSection2";
 export default function Home() {
   return (
     <>
-    {/* <HeroSection /> */}
-      <HeroSection2 />
+    <HeroSection />
+      {/* <HeroSection2 /> */}
       <PopularCourses />
       <FoundationalSkillsSection />
       <CoachingTestimonials />

@@ -10,4 +10,10 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
+
+  <script>
+  // Fix for 'global is not defined' error
+  window.global = window;
+</script>
 </html>
+

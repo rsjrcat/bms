@@ -2,6 +2,7 @@ import React from 'react';
 import { CheckCircle } from 'lucide-react';
 import img1 from '../../assets/img1.png'
 import img2 from '../../assets/img2.png';
+import AvatarGroup from '../../components/AvatarGroup';
 
 const HeroSection2 = () => {
     return (
@@ -138,7 +139,7 @@ const HeroSection2 = () => {
 
                                     {/* Stats Card */}
                                     <div className="bg-white rounded-xl p-3 absolute bottom-10 left-10 mb-3 shadow">
-                                        <div className="flex -space-x-2 mb-2">
+                                        {/* <div className="flex -space-x-2 mb-2">
                                             {["R", "S", "A", "P"].map((initial, index) => (
                                                 <div
                                                     key={index}
@@ -150,7 +151,8 @@ const HeroSection2 = () => {
                                                     {initial}
                                                 </div>
                                             ))}
-                                        </div>
+                                        </div> */}
+                                        <AvatarGroup />
                                         <div className="text-gray-800 font-bold text-xl">7,324+</div>
                                         <div className="text-gray-500">Students Preparing with us</div>
                                     </div>

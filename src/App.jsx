@@ -6,6 +6,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Courses from "./pages/Courses";
 import Contact from "./pages/Contact";
+import CourseDetailPage from './pages/CourseDetail';
+import CertificationVerificationPage from './pages/CertificationVerificationPage';
 
 export default function App() {
   return (
@@ -16,7 +18,9 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:courseId" element={<CourseDetailPage />} /> {/* Add this route */}
           <Route path="/contact" element={<Contact />} />
+          <Route path="/certificate-verification" element={<CertificationVerificationPage />} />
         </Routes>
         <Newsletter />
         <Footer />
