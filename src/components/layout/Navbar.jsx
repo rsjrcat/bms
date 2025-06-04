@@ -36,24 +36,39 @@ const Navbar = () => {
     return (
         <>
             {/* Top Bar */}
-            <div className="w-full bg-teal-700 text-white text-sm py-2 px-4 flex flex-col md:flex-row justify-between items-center">
-                <div className="flex items-center space-x-4">
-                    <span>📞 +91 98765 43210</span>
-                    <a href="/admin-login" className="hover:underline">Admin Login</a>
-                    <a href="/student-login" className="hover:underline">Student Login</a>
-                </div>
-                <div className="flex items-center space-x-3 mt-2 md:mt-0">
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200"><FaFacebookF /></a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200"><FaInstagram /></a>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200"><FaXTwitter /></a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200"><FaLinkedinIn /></a>
-                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200"><FaYoutube /></a>
+            <div className="w-full bg-teal-700 text-white">
+                <div className="max-w-8xl mx-auto px-4 py-2 flex flex-col md:flex-row justify-between items-center text-sm">
+                    {/* Left side: contact and links */}
+                    <div className="flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-4">
+                        <span>📞 +91 98765 43210</span>
+                        <a href="/admin-login" className="hover:underline">Admin Login</a>
+                        <a href="/student-login" className="hover:underline">Student Login</a>
+                    </div>
+
+                    {/* Right side: social icons */}
+                    <div className="flex items-center space-x-3 mt-2 md:mt-0">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
+                            <FaFacebookF />
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
+                            <FaInstagram />
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
+                            <FaXTwitter />
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
+                            <FaLinkedinIn />
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
+                            <FaYoutube />
+                        </a>
+                    </div>
                 </div>
             </div>
 
             {/* Sticky Navbar */}
-            <nav className={`sticky top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-teal-50'}`}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav className={`sticky  top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-teal-50'}`}>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
                     <div className="flex items-center justify-between h-16">
                         {/* Logo */}
                         <div className="flex-shrink-0 flex items-center">
@@ -82,8 +97,8 @@ const Navbar = () => {
                                         setDropdownTimeout(timeout);
                                     }}
                                 >
-                                    <button 
-                                        onClick={() => navigate('/courses')} 
+                                    <button
+                                        onClick={() => navigate('/courses')}
                                         className="text-gray-600 cursor-pointer hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium flex items-center focus:outline-none">
                                         Courses
                                         <ChevronDown size={16} className="ml-1" />
@@ -171,7 +186,7 @@ const Navbar = () => {
                                                                         className="group"
                                                                     >
                                                                         <a
-                                                                            href={`/courses/${slugify(course.courseName)}`}
+                                                                            href={`/courses/${(course.courseCode)}`}
                                                                             className={`block p-3 rounded-lg border transition-all duration-200 ${hoveredCourse === i
                                                                                 ? 'border-teal-200 bg-gradient-to-r from-teal-50 to-cyan-50 shadow-md transform translate-x-1'
                                                                                 : 'border-slate-100 hover:border-slate-200 hover:bg-slate-50'
@@ -282,11 +297,11 @@ const Navbar = () => {
 
                             </div>
 
-                            
+
 
                         </div>
 
-                        
+
                         {/* Mobile Menu Button */}
                         <div className="md:hidden flex items-center">
                             <button onClick={toggleMenu} className="inline-flex items-center justify-center p-2 rounded-md text-teal-600 hover:text-teal-800 hover:bg-teal-100 focus:outline-none">

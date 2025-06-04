@@ -17,6 +17,8 @@ const Courses = lazy(() => import("./pages/Courses"));
 const Contact = lazy(() => import("./pages/Contact"));
 const CourseDetailPage = lazy(() => import('./pages/CourseDetail'));
 const CertificationVerificationPage = lazy(() => import('./pages/CertificationVerificationPage'));
+const Activities = lazy(() => import('./pages/Activities'));
+const OffersAndSchemes = lazy(() => import('./pages/OffersAndSchemes'));
 
 const queryClient = new QueryClient();
 
@@ -36,6 +38,8 @@ export default function App() {
                   <Route path="/courses/:courseId" element={<CourseDetailPage />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/certificate-verification" element={<CertificationVerificationPage />} />
+                  <Route path="/activities" element={<Activities />} />
+                  <Route path="/offers-and-schemes" element={<OffersAndSchemes />} />
                 </Routes>
               </Suspense>
               <Newsletter />

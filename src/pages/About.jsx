@@ -1,4 +1,6 @@
 import React from 'react';
+import banner from '../assets/banners/about.jpg'
+import Header from '../components/common/Header';
 
 export default function About() {
   const stats = [
@@ -30,14 +32,14 @@ export default function About() {
   ];
 
   return (
+    <>
+    <Header 
+            image={banner}
+            heading="About BMS Academy"
+            subheading="Empowering learners worldwide with quality education and practical skills for success"
+          />
     <div className="max-w-7xl mx-auto px-4 py-16">
-      {/* Hero Section */}
-      <div className="mt-8 text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">About BMS Academey</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Empowering learners worldwide with quality education and practical skills for success
-        </p>
-      </div>
+      
 
       {/* Mission Section */}
       <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
@@ -151,5 +153,6 @@ export default function About() {
         </button>
       </div>
     </div>
+    </>
   );
 }

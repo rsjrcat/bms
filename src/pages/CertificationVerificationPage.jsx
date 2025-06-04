@@ -84,7 +84,7 @@ const CertificationVerificationPage = () => {
 
 
             {/* Hero Section */}
-            <div className="bg-gradient-to-r from-teal-600 to-green-500 py-16">
+            <div className="bg-gradient-to-r from-blue-900 to-blue-950 py-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="mb-8">
                         <Shield className="h-16 w-16 text-white mx-auto mb-4" />

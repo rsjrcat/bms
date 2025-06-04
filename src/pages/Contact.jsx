@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, MessageSquare } from 'lucide-react';
+import banner from '../assets/banners/contact.jpg'
+import Header from '../components/common/Header';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -42,14 +44,14 @@ export default function Contact() {
   };
 
   return (
+    <>
+        <Header 
+                image={banner}
+                heading="Contact Us"
+                subheading="Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible."
+              />
     <div className="max-w-7xl mx-auto px-4 py-16">
-      {/* Hero Section */}
-      <div className="mt-8 text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-        </p>
-      </div>
+      
 
       {/* Contact Methods */}
       <div className="grid md:grid-cols-4 gap-6 mb-12">
@@ -173,5 +175,6 @@ export default function Contact() {
         </div>
       </div>
     </div>
+    </>
   );
 }

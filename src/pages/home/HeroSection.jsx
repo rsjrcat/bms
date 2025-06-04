@@ -1,5 +1,6 @@
 // HeroSection.jsx
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const images = [
   "https://res.cloudinary.com/dsol90tiu/image/upload/v1748724705/image_5_ydnihy.jpg",
@@ -25,7 +26,7 @@ const HeroSection = () => {
       {/* Text Content */}
       <div className="absolute z-20 inset-0 flex flex-col items-center justify-center px-4 text-center text-white max-w-4xl mx-auto">
         
-        <div className="text-pink-400 font-medium mb-3 flex items-center justify-center gap-2 text-sm sm:text-base md:text-lg">
+        <div className="text-orange-500 font-medium mb-3 flex items-center justify-center gap-2 text-sm sm:text-base md:text-lg">
           <span>🚀</span>
           <span>Empower Your Learning Journey Today</span>
         </div>
@@ -49,12 +50,17 @@ const HeroSection = () => {
         </ul>
 
         <div className="mt-6 flex flex-col sm:flex-row gap-4">
-          <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-6 rounded text-sm sm:text-base">
-            Join For Free
-          </button>
-          <button className="bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-6 rounded border text-sm sm:text-base">
-            Explore Courses
-          </button>
+            <Link to="/contact">
+    <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-6 rounded text-sm sm:text-base cursor-pointer">
+      Contact Now
+    </button>
+  </Link>
+  
+  <Link to="/courses">
+    <button className="bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-6 rounded border text-sm sm:text-base cursor-pointer">
+      Explore Courses
+    </button>
+  </Link>
         </div>
       </div>
 

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import coursesData from '../../data/courseData'; // Adjust this path accordingly
 import { Link } from 'react-router-dom';
 import AvatarGroup from '../../components/AvatarGroup';
+import Modal from '../../components/Modal';
+import EnrollmentForm from '../../components/EnrollmentForm';
 
 const PopularCourses = () => {
   const allCourses = coursesData.flatMap(category =>
@@ -10,6 +12,9 @@ const PopularCourses = () => {
       category: category.category
     }))
   );
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCourseId, setSelectedCourseId] = useState(null);
 
   // Extract unique categories
   const categoryList = ['All Programmes', ...coursesData.map(c => c.category)];
@@ -108,14 +113,25 @@ const PopularCourses = () => {
 
 
                 </div>
-                <button className="bg-teal-700 hover:bg-teal-800 text-white text-sm font-medium py-2 px-4 rounded transition-colors">
-                  Enroll Now
-                </button>
+                <button 
+  onClick={() => {
+    setSelectedCourseId(course.courseCode);
+    setIsModalOpen(true);
+  }}
+  className="bg-teal-700 hover:bg-teal-800 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+>
+  Enroll Now
+</button>
+
               </div>
             </div>
           </div>
         ))}
       </div>
+<Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+  <EnrollmentForm courseId={selectedCourseId} onClose={() => setIsModalOpen(false)} />
+</Modal>
+
     </div>
   );
 };
