@@ -16,7 +16,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000', // Your backend API server
+        target: 'https://bms-2-te1h.onrender.com', // Your backend API server
         changeOrigin: true,
         secure: false,
       }
