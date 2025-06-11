@@ -11,7 +11,7 @@ require('./config/db')(); // connect DB
 
 // Enable CORS
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow frontend
+  origin: 'https://bms-two-bay.vercel.app', // Allow frontend
   credentials: true // Optional: if using cookies/auth headers
 }));
 
