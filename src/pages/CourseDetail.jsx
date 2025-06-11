@@ -16,7 +16,7 @@ const CourseDetailPage = () => {
         setError(null);
 
 
-        fetch(`http://localhost:5000/api/courses/${courseId}`)
+        fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses/${courseId}`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`Failed to fetch course data: ${res.statusText}`);

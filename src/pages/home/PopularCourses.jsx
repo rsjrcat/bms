@@ -21,7 +21,7 @@ const PopularCourses = () => {
   useEffect(() => {
     async function fetchCourses() {
       try {
-        const res = await fetch('/api/courses');
+        const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses`);
         if (!res.ok) throw new Error('Failed to fetch courses');
         const data = await res.json();
 

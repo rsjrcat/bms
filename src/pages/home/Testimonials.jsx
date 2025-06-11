@@ -9,7 +9,7 @@ export default function CoachingTestimonials() {
   useEffect(() => {
     async function fetchTestimonials() {
       try {
-        const res = await fetch("/api/testimonials"); // adjust base URL as needed
+        const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials`); // adjust base URL as needed
         if (!res.ok) throw new Error("Failed to fetch testimonials");
         const data = await res.json();
         setTestimonials(data);

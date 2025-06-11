@@ -62,7 +62,7 @@ const DashboardCourses = () => {
             try {
                 setLoading(true);
                 const token = localStorage.getItem('token');
-                const response = await axios.get('/api/courses', {
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -129,7 +129,7 @@ const DashboardCourses = () => {
             const uploadFormData = new FormData();
             uploadFormData.append('image', file);
 
-            const response = await axios.post('/api/courses/upload', uploadFormData, {
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses/upload`, uploadFormData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data'
@@ -261,14 +261,14 @@ const DashboardCourses = () => {
 
             if (isEditing) {
                 const { _originalCourseCode, ...dataToSend } = formData;
-                response = await axios.put(`/api/courses/${_originalCourseCode}`, dataToSend, {
+                response = await axios.put(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses/${_originalCourseCode}`, dataToSend, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
                 toast.success('Course updated successfully!');
             } else {
-                response = await axios.post('/api/courses', formData, {
+                response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses`, formData, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -277,7 +277,7 @@ const DashboardCourses = () => {
             }
 
             // Refresh list
-            const coursesResponse = await axios.get('/api/courses', {
+            const coursesResponse = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -316,14 +316,14 @@ const DashboardCourses = () => {
         if (window.confirm('Are you sure you want to delete this course?')) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`/api/courses/${courseCode}`, {
+                await axios.delete(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses/${courseCode}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
 
                 // Refresh courses list
-                const response = await axios.get('/api/courses', {
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

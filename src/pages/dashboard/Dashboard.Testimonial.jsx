@@ -25,7 +25,7 @@ const DashboardTestimonials = () => {
     const fetchTestimonials = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('/api/testimonials', {
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials`, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -83,14 +83,14 @@ const DashboardTestimonials = () => {
       const token = localStorage.getItem('token');
       
       if (isEditing) {
-        await axios.put(`/api/testimonials/${currentTestimonial._id}`, formData, {
+        await axios.put(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials/${currentTestimonial._id}`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
         });
         toast.success('Testimonial updated successfully');
       } else {
-        await axios.post('/api/testimonials', formData, {
+        await axios.post(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -99,7 +99,7 @@ const DashboardTestimonials = () => {
       }
 
       // Refresh testimonials list
-      const response = await axios.get('/api/testimonials', {
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials`, {
         headers: {
           Authorization: `Bearer ${token}`,
         }
@@ -132,7 +132,7 @@ const DashboardTestimonials = () => {
     if (window.confirm('Are you sure you want to delete this testimonial?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`/api/testimonials/${id}`, {
+        await axios.delete(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
