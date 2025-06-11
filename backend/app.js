@@ -10,9 +10,20 @@ require('./config/db')(); // connect DB
 
 
 // Enable CORS
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://bms-two-bay.vercel.app'
+];
+
 app.use(cors({
-  origin: 'https://bms-two-bay.vercel.app/', // Allow frontend
-  credentials: true // Optional: if using cookies/auth headers
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
 
 app.use(express.json());
