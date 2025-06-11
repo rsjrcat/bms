@@ -309,34 +309,111 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu */}
-                <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
-                        <a href="/" className="text-teal-600 hover:bg-teal-50 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                        <a href="/courses" className="text-gray-600 hover:bg-teal-50 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium">Courses</a>
-                        <a href="/about" className="text-gray-600 hover:bg-teal-50 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium">About</a>
-                        <a href="/contact" className="text-gray-600 hover:bg-teal-50 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
-
-                        <div className="border-t border-gray-200 pt-4 pb-2">
-                            {isLoggedIn ? (
-                                <>
-                                    <a href="/dashboard" className="flex items-center text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium">
-                                        <User size={18} className="mr-2" />
-                                        Dashboard
-                                    </a>
-                                    <button onClick={toggleLogin} className="flex w-full items-center text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium">
-                                        <LogOut size={18} className="mr-2" />
-                                        Logout
-                                    </button>
-                                </>
-                            ) : (
-                                <>
-                                    <a href="/login" className="block text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium">LOG IN</a>
-                                    <a href="/signup" className="block bg-teal-600 hover:bg-teal-700 text-white mt-2 px-3 py-2 rounded-md text-base font-medium text-center">SIGN UP</a>
-                                </>
+                {/* Mobile Menu */}
+<div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
+    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
+        <a href="/" className="text-teal-600 hover:bg-teal-50 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+        
+        {/* Mobile Courses Dropdown */}
+        <div className="relative">
+            <button 
+                onClick={() => setShowCoursesDropdown(!showCoursesDropdown)}
+                className="w-full flex justify-between items-center text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium"
+            >
+                Courses
+                <ChevronDown size={18} className={`transition-transform ${showCoursesDropdown ? 'transform rotate-180' : ''}`} />
+            </button>
+            
+            {showCoursesDropdown && (
+                <div className="pl-4 mt-1 space-y-1">
+                    {coursesData.map((cat, idx) => (
+                        <div key={idx} className="border-l-2 border-teal-200 pl-3">
+                            <button 
+                                onClick={() => setActiveCategoryIndex(activeCategoryIndex === idx ? null : idx)}
+                                className="w-full flex justify-between items-center text-gray-600 hover:text-teal-600 px-2 py-1 rounded-md text-sm font-medium"
+                            >
+                                <div className="flex items-center gap-2">
+                                    <div className="text-teal-600">
+                                        {cat.icon}
+                                    </div>
+                                    {cat.category}
+                                </div>
+                                <ChevronDown size={16} className={`transition-transform ${activeCategoryIndex === idx ? 'transform rotate-180' : ''}`} />
+                            </button>
+                            
+                            {activeCategoryIndex === idx && (
+                                <div className="pl-2 mt-1 space-y-1">
+                                    {cat.courses.map((course, i) => (
+                                        <a
+                                            key={i}
+                                            href={`/courses/${(course.courseCode)}`}
+                                            className="block px-2 py-1.5 text-gray-600 hover:bg-teal-50 hover:text-teal-600 rounded-md text-sm"
+                                        >
+                                            {course.courseName}
+                                        </a>
+                                    ))}
+                                </div>
                             )}
                         </div>
-                    </div>
+                    ))}
                 </div>
+            )}
+        </div>
+
+        <a href="/about" className="text-gray-600 hover:bg-teal-50 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium">About</a>
+        <a href="/contact" className="text-gray-600 hover:bg-teal-50 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+        
+        {/* Mobile Student Corner Dropdown */}
+        <div className="relative">
+            <button 
+                onClick={() => setShowStudentCornerDropdown(!showStudentCornerDropdown)}
+                className="w-full flex justify-between items-center text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium"
+            >
+                Student Corner
+                <ChevronDown size={18} className={`transition-transform ${showStudentCornerDropdown ? 'transform rotate-180' : ''}`} />
+            </button>
+            
+            {showStudentCornerDropdown && (
+                <div className="pl-4 mt-1 space-y-1">
+                    <a
+                        href="/certificate-verification"
+                        className="block px-3 py-2 text-gray-600 hover:bg-teal-50 hover:text-teal-600 rounded-md text-sm"
+                    >
+                        🎓 Certificate Verification
+                    </a>
+                    <a
+                        href="/offers-and-schemes"
+                        className="block px-3 py-2 text-gray-600 hover:bg-teal-50 hover:text-teal-600 rounded-md text-sm"
+                    >
+                        💡 Offers and Schemes
+                    </a>
+                </div>
+            )}
+        </div>
+
+        <a href="/activities" className="text-gray-600 hover:bg-teal-50 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium">Activities</a>
+
+        <div className="border-t border-gray-200 pt-4 pb-2">
+            {isLoggedIn ? (
+                <>
+                    <a href="/dashboard" className="flex items-center text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium">
+                        <User size={18} className="mr-2" />
+                        Dashboard
+                    </a>
+                    <button onClick={toggleLogin} className="flex w-full items-center text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium">
+                        <LogOut size={18} className="mr-2" />
+                        Logout
+                    </button>
+                </>
+            ) : (
+                <>
+                    <a href="/login" className="block text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium">LOG IN</a>
+                    <a href="/dashboard" className="block bg-teal-600 hover:bg-teal-700 text-white mt-2 px-3 py-2 rounded-md text-base font-medium text-center">Dashboard</a>
+                </>
+            )}
+        </div>
+    </div>
+</div>
             </nav>
         </>
     );
