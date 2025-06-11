@@ -3,6 +3,8 @@ import { Menu, X, User, LogOut, ChevronDown, ChevronRight, BookOpen, Users, Cloc
 import { FaFacebookF, FaInstagram, FaXTwitter, FaLinkedinIn, FaYoutube } from 'react-icons/fa6';
 import coursesData from "../../data/courseData"
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/logo.png'; // Adjust the path as necessary
+import extendlogo from '../../assets/extendlogo.png'; // Adjust the path as necessary
 
 // Enhanced course data with icons and metadata
 
@@ -36,30 +38,24 @@ const Navbar = () => {
     return (
         <>
             {/* Top Bar */}
-            <div className="w-full bg-teal-700 text-white">
-                <div className="max-w-8xl mx-auto px-4 py-2 flex flex-col md:flex-row justify-between items-center text-sm">
+            <div className="w-full bg-teal-700 text-white text-sm">
+                <div className="max-w-9xl mx-auto px-4 py-2 flex flex-wrap justify-between items-center gap-y-2">
+
                     {/* Left side: contact and links */}
-                    <div className="flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-4">
-                        <span>📞 +91 98765 43210</span>
-                        <a href="/admin-login" className="hover:underline">Admin Login</a>
-                        <a href="/student-login" className="hover:underline">Student Login</a>
+                    <div className="flex flex-wrap items-center gap-4">
+                        <span className="flex items-center gap-1">
+                            <span role="img" aria-label="phone">📞</span> +91 98765 43210
+                        </span>
+                        <a href="/admin-login" className="hover:underline">Login</a>
+                        <a href="/dashboard" className="hover:underline">Dashboard</a>
                     </div>
 
                     {/* Right side: social icons */}
-                    <div className="flex items-center space-x-3 mt-2 md:mt-0">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
+                    <div className="flex items-center gap-3">
+                        <a href="https://www.facebook.com/bmsittraining?rdid=HQ8yuRR80obgw9fh&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1NVxH9T2j5%2F#" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
                             <FaFacebookF />
                         </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
-                            <FaInstagram />
-                        </a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
-                            <FaXTwitter />
-                        </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
-                            <FaLinkedinIn />
-                        </a>
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
+                        <a href="https://www.youtube.com/@bmsacademy" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
                             <FaYoutube />
                         </a>
                     </div>
@@ -73,8 +69,9 @@ const Navbar = () => {
                         {/* Logo */}
                         <div className="flex-shrink-0 flex items-center">
                             <a href="/" className="flex items-center">
-                                <img src="https://s3u.tmimgcdn.com/u37752224/40b6d70b252d68b7bf449eb2804a627c.gif" alt="Logo" className="h-10 w-10" />
-                                <span className="ml-2 text-xl font-semibold text-teal-700">BMS Academy</span>
+                                <img src={logo} alt="Logo" className="h-10 w-10" />
+                                <img src={extendlogo} alt="Logo" className="h-10" />
+                                {/* <span className="ml-2 text-xl font-semibold text-teal-700">BMS Academy</span> */}
                             </a>
                         </div>
 

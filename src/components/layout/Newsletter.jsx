@@ -21,7 +21,7 @@ const Newsletter = () => {
               Join our community of learners today!
             </p>
           </div>
-          
+
           <form onSubmit={handleSubmit} className="w-full md:w-auto">
             <div className="flex flex-col sm:flex-row gap-3">
               <input
@@ -29,9 +29,10 @@ const Newsletter = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="px-6 py-3 rounded-lg w-full sm:w-80"
+                className="px-6 py-3 rounded-lg w-full sm:w-80 border bg-teal-600 border-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-300 text-sm"
                 required
               />
+
               <button
                 type="submit"
                 className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium px-8 py-3 rounded-lg transition-colors"

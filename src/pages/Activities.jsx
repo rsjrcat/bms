@@ -1,5 +1,7 @@
 import React from 'react';
 import { Calendar, Users, MapPin, Clock } from 'lucide-react';
+import Header from '../components/common/Header';
+import banner from '../assets/banners/activity.png'; // Adjust the path as necessary
 
 const Activities = () => {
   const upcomingEvents = [
@@ -39,56 +41,62 @@ const Activities = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16">
+    <>
       {/* Hero Section */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Student Activities & Events</h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Participate in our engaging activities and events designed to enhance your learning experience
-        </p>
-      </div>
+      <Header 
+              image={banner}
+              heading="Student Activities & Events"
+              subheading="Participate in our engaging activities and events designed to enhance your learning experience"
+            />
+    <div className="max-w-7xl mx-auto px-4 py-16">
 
       {/* Upcoming Events */}
       <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8">Upcoming Events</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {upcomingEvents.map((event, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img
-                src={event.image}
-                alt={event.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
-                <p className="text-gray-600 mb-4">{event.description}</p>
-                <div className="space-y-2">
-                  <div className="flex items-center text-gray-600">
-                    <Calendar className="w-5 h-5 mr-2" />
-                    <span>{event.date}</span>
-                  </div>
-                  <div className="flex items-center text-gray-600">
-                    <Clock className="w-5 h-5 mr-2" />
-                    <span>{event.time}</span>
-                  </div>
-                  <div className="flex items-center text-gray-600">
-                    <MapPin className="w-5 h-5 mr-2" />
-                    <span>{event.location}</span>
-                  </div>
-                </div>
-                <button className="mt-6 w-full bg-teal-600 text-white py-2 rounded-md hover:bg-teal-700 transition-colors">
-                  Register Now
-                </button>
-              </div>
+  <h2 className="text-3xl font-bold mb-8">Upcoming Events</h2>
+  <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-8">
+    {upcomingEvents.map((event, index) => (
+      <div
+        key={index}
+        className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col"
+      >
+        <img
+          src={event.image}
+          alt={event.title}
+          className="w-full h-48 object-cover"
+        />
+        <div className="p-6 flex flex-col flex-grow">
+          <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
+          <p className="text-gray-600 mb-4 flex-grow">{event.description}</p>
+          <div className="space-y-2 mb-6">
+            <div className="flex items-center text-gray-600">
+              <Calendar className="w-5 h-5 mr-2" />
+              <span>{event.date}</span>
             </div>
-          ))}
+            <div className="flex items-center text-gray-600">
+              <Clock className="w-5 h-5 mr-2" />
+              <span>{event.time}</span>
+            </div>
+            <div className="flex items-center text-gray-600">
+              <MapPin className="w-5 h-5 mr-2" />
+              <span>{event.location}</span>
+            </div>
+          </div>
+          <div className="mt-auto">
+            <button className="w-full bg-teal-600 text-white py-2 rounded-md hover:bg-teal-700 transition-colors">
+              Register Now
+            </button>
+          </div>
         </div>
-      </section>
+      </div>
+    ))}
+  </div>
+</section>
+
 
       {/* Past Events */}
       <section>
         <h2 className="text-3xl font-bold mb-8">Past Events</h2>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-8">
           {pastEvents.map((event, index) => (
             <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
@@ -121,6 +129,7 @@ const Activities = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

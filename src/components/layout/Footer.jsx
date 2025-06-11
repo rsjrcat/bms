@@ -1,5 +1,8 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import logo from '../../assets/logo.png'; // Adjust the path as necessary
+import extendlogo from '../../assets/extendlogo.png'; // Adjust the path as necessary
+import { FaYoutube } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -9,17 +12,20 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center mb-4">
-              <img src="https://s3u.tmimgcdn.com/u37752224/40b6d70b252d68b7bf449eb2804a627c.gif" alt="BMS Academey Logo" className="h-8 w-8" />
-              <span className="ml-2 text-xl font-semibold text-white">BMS Academey</span>
+              <a href="/" className="flex items-center gap-2">
+                <img src={logo} alt="Logo" className="h-10 w-10" />
+                <img src={extendlogo} alt="Logo" className="h-10" />
+                {/* <span className="ml-2 text-xl font-semibold text-teal-700">BMS Academy</span> */}
+              </a>
             </div>
             <p className="text-sm mb-4">
               Empowering learners worldwide with quality education and practical skills for success.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="https://www.facebook.com/bmsittraining?rdid=HQ8yuRR80obgw9fh&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1NVxH9T2j5%2F#" className="hover:text-white transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              {/* <a href="#" className="hover:text-white transition-colors">
                 <Twitter size={20} />
               </a>
               <a href="#" className="hover:text-white transition-colors">
@@ -27,6 +33,9 @@ const Footer = () => {
               </a>
               <a href="#" className="hover:text-white transition-colors">
                 <Linkedin size={20} />
+              </a> */}
+              <a href="https://www.youtube.com/@bmsacademy" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200">
+                <FaYoutube />
               </a>
             </div>
           </div>
@@ -38,7 +47,7 @@ const Footer = () => {
               <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="/courses" className="hover:text-white transition-colors">Our Courses</a></li>
               <li><a href="/contact" className="hover:text-white transition-colors">Contact Us</a></li>
-              <li><a href="/blog" className="hover:text-white transition-colors">Blog</a></li>
+              <li><a href="/activities" className="hover:text-white transition-colors">Activity</a></li>
             </ul>
           </div>
 
@@ -57,9 +66,10 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Contact Info</h3>
             <ul className="space-y-2">
-              <li>1234 Education Ave</li>
-              <li>Learning City, ED 12345</li>
-              <li>Phone: (123) 456-7890</li>
+              <li>1st Floor, Park Plaza</li>
+              <li>BMS ACADEMY, Goner Rd</li>
+              <li>Jaipur, Rajasthan 302031 </li>
+              <li>Phone: 9660038052</li>
               <li>Email: info@BMS Academey.com</li>
             </ul>
           </div>

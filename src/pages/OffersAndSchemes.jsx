@@ -1,5 +1,7 @@
 import React from 'react';
 import { Tag, Clock, CheckCircle, AlertCircle } from 'lucide-react';
+import Header from '../components/common/Header';
+import banner from '../assets/banners/offers.png'; // Adjust the path as necessary
 
 const OffersAndSchemes = () => {
   const currentOffers = [
@@ -50,15 +52,14 @@ const OffersAndSchemes = () => {
     }
   ];
 
-  return (
+  return (<>
+    <Header 
+                  image={banner}
+                  heading="Special Offers & Schemes"
+                  subheading="Take advantage of our exclusive offers and scholarship programs to make quality education more accessible"
+                />
     <div className="max-w-7xl mx-auto px-4 py-16">
-      {/* Hero Section */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Special Offers & Schemes</h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Take advantage of our exclusive offers and scholarship programs to make quality education more accessible
-        </p>
-      </div>
+      
 
       {/* Current Offers */}
       <section className="mb-16">
@@ -136,6 +137,7 @@ const OffersAndSchemes = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

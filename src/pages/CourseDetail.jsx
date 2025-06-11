@@ -1,35 +1,63 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Clock, Users, DollarSign, Award, CheckCircle, Star, Calendar, BookOpen, Target, Trophy } from 'lucide-react';
-import coursesData from '../data/courseData';
+
 
 const CourseDetailPage = () => {
     const [activeTab, setActiveTab] = useState('overview');
     const { courseId } = useParams();
     const [courseData, setCourseData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
 
     useEffect(() => {
-        // Find the course by courseId
-        const allCourses = coursesData.flatMap(category =>
-            category.courses.map(course => ({
-                ...course,
-                category: category.category
-            }))
-        );
+        setLoading(true);
+        setError(null);
 
-        const foundCourse = allCourses.find(course => course.courseCode === courseId);
-        setCourseData(foundCourse);
+
+        fetch(`http://localhost:5000/api/courses/${courseId}`)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`Failed to fetch course data: ${res.statusText}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                setCourseData(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                setError(err.message);
+                setLoading(false);
+            });
     }, [courseId]);
+
+
+    if (loading) {
+        return <div className="min-h-screen bg-gray-50 flex items-center justify-center">Loading...</div>;
+    }
+
+
+    if (error) {
+        return <div className="min-h-screen bg-gray-50 flex items-center justify-center text-red-600">
+            Error: {error}
+        </div>;
+    }
+
+
+    if (!courseData) {
+        return <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            Course not found
+        </div>;
+    }
+
 
     const tabs = [
         { id: 'overview', label: 'Overview', icon: BookOpen },
         { id: 'syllabus', label: 'Syllabus', icon: Target },
         { id: 'certificate', label: 'Certificate', icon: Award }
     ];
-
-    if (!courseData) {
-        return <div className="min-h-screen bg-gray-50 flex items-center justify-center">Loading...</div>;
-    }
 
 
     return (
@@ -42,6 +70,7 @@ const CourseDetailPage = () => {
                     className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent"></div>
+
 
                 <div className="absolute inset-0 flex items-center">
                     <div className="container max-w-7xl mx-auto px-6">
@@ -71,6 +100,7 @@ const CourseDetailPage = () => {
                 </div>
             </div>
 
+
             <div className="container max-w-7xl mx-auto px-6 py-12">
                 <div className="grid lg:grid-cols-3 gap-12">
                     {/* Main Content */}
@@ -95,6 +125,7 @@ const CourseDetailPage = () => {
                             })}
                         </div>
 
+
                         {/* Tab Content */}
                         {activeTab === 'overview' && (
                             <div className="space-y-8">
@@ -103,6 +134,7 @@ const CourseDetailPage = () => {
                                     <h2 className="text-2xl font-bold mb-4">Course Description</h2>
                                     <p className="text-gray-700 leading-relaxed">{courseData.description}</p>
                                 </div>
+
 
                                 {/* Eligibility */}
                                 <div className="bg-white rounded-lg p-6 shadow-sm">
@@ -117,6 +149,7 @@ const CourseDetailPage = () => {
                                     </ul>
                                 </div>
 
+
                                 {/* Skills */}
                                 <div className="bg-white rounded-lg p-6 shadow-sm">
                                     <h2 className="text-2xl font-bold mb-4">Skills You Will Learn</h2>
@@ -129,6 +162,7 @@ const CourseDetailPage = () => {
                                         ))}
                                     </ul>
                                 </div>
+
 
                                 {/* How it Helps */}
                                 <div className="bg-white rounded-lg p-6 shadow-sm">
@@ -144,6 +178,7 @@ const CourseDetailPage = () => {
                                 </div>
                             </div>
                         )}
+
 
                         {activeTab === 'syllabus' && (
                             <div className="bg-white rounded-lg p-6 shadow-sm">
@@ -170,6 +205,7 @@ const CourseDetailPage = () => {
                                 </div>
                             </div>
                         )}
+
 
                         {activeTab === 'certificate' && (
                             <div className="space-y-6">
@@ -200,6 +236,7 @@ const CourseDetailPage = () => {
                         )}
                     </div>
 
+
                     {/* Sidebar */}
                     <div className="lg:col-span-1">
                         <div className="sticky top-6 space-y-6">
@@ -219,10 +256,12 @@ const CourseDetailPage = () => {
                                     </span>
                                 </div>
 
+
                                 <button className="w-full flex items-center justify-center gap-2 bg-teal-700 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition mb-4"
->
+                                >
                                     Enroll Now
                                 </button>
+
 
                                 <div className="space-y-3 text-sm text-gray-600">
                                     <div className="flex items-center">
@@ -244,6 +283,7 @@ const CourseDetailPage = () => {
                                 </div>
                             </div>
 
+
                             {/* Course Features */}
                             <div className="bg-green-50 rounded-lg p-6 shadow-sm">
                                 <h3 className="text-lg font-semibold mb-4">What's Included</h3>
@@ -257,9 +297,11 @@ const CourseDetailPage = () => {
                                 </ul>
                             </div>
 
+
                             {/* Quick Actions */}
                             <div className="bg-green-50 rounded-lg p-4 border border-green-100">
                                 <h3 className="text-md font-semibold text-gray-800 mb-3">Quick Actions</h3>
+
 
                                 <a
                                     href={courseData.preview}
@@ -272,16 +314,7 @@ const CourseDetailPage = () => {
                                     </svg>
                                     Preview Course
                                 </a>
-
-
-                                <button className="w-full flex items-center justify-center gap-2 mt-3 border border-gray-200 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded-md transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v16h16V4H4zm4 4h8M4 12h16M10 16h4" />
-                                    </svg>
-                                    Download Brochure
-                                </button>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -289,5 +322,6 @@ const CourseDetailPage = () => {
         </div>
     );
 };
+
 
 export default CourseDetailPage;
