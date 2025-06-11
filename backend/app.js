@@ -1,15 +1,21 @@
 const express = require('express');
-const cors = require('cors'); // ✅ Add this
+const cors = require('cors');
 const app = express();
+
+require('dotenv').config();
+require('./config/db')();
+
 const adminRoutes = require('./routes/adminRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const testimonialRoutes = require('./routes/testimonialRoutes');
+const job = require('./config/cron'); // ✅ Import the cron job
 
-require('dotenv').config();
-require('./config/db')(); // connect DB
+// Start cron job only in non-production
+if (process.env.NODE_ENV !== 'production') {
+  job.start();
+}
 
-
-// Enable CORS
+// CORS setup
 const allowedOrigins = [
   'http://localhost:5173',
   'https://bms-two-bay.vercel.app'
@@ -29,17 +35,14 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/api/admin', adminRoutes);
-app.use('/api/courses', courseRoutes); 
-app.use('/api/contact', require('./routes/contact')); // Contact form route
+app.use('/api/courses', courseRoutes);
+app.use('/api/contact', require('./routes/contact'));
 app.use('/api/testimonials', testimonialRoutes);
 
 app.get('/', (req, res) => res.send('API is running...'));
 
-console.log('Cloudinary config:', {
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET ? '***' : 'NOT SET',
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'OK' });
 });
-
 
 module.exports = app;
