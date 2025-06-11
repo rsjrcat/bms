@@ -317,11 +317,12 @@ const Navbar = () => {
         {/* Mobile Courses Dropdown */}
         <div className="relative">
             <button 
-                onClick={() => setShowCoursesDropdown(!showCoursesDropdown)}
+                
+
                 className="w-full flex justify-between items-center text-gray-600 hover:bg-teal-50 hover:text-teal-600 px-3 py-2 rounded-md text-base font-medium"
             >
-                Courses
-                <ChevronDown size={18} className={`transition-transform ${showCoursesDropdown ? 'transform rotate-180' : ''}`} />
+                <a href='/courses'>Courses</a>
+                <ChevronDown onClick={() => setShowCoursesDropdown(!showCoursesDropdown)} size={18} className={`transition-transform ${showCoursesDropdown ? 'transform rotate-180' : ''}`} />
             </button>
             
             {showCoursesDropdown && (
