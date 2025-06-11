@@ -11,7 +11,7 @@ const testimonialRoutes = require('./routes/testimonialRoutes');
 const job = require('./config/cron'); // ✅ Import the cron job
 
 // Start cron job only in non-production
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'production') {
   job.start();
 }
 
