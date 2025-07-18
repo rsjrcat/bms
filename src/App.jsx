@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import { HelmetProvider } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { AuthProvider } from './hooks/useAuth';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Navbar from "./components/layout/Navbar";
@@ -31,32 +32,34 @@ export default function App() {
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Router>
-            <div className="bg-gray-50 min-h-screen">
-              <Navbar />
-              <Suspense fallback={<LoadingSpinner />}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/courses" element={<Courses />} />
-                  <Route path="/courses/:courseId" element={<CourseDetailPage />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/certificate-verification" element={<CertificationVerificationPage />} />
-                  <Route path="/activities" element={<Activities />} />
-                  <Route path="/offers-and-schemes" element={<OffersAndSchemes />} />
-                  <Route path="/dashboard-login" element={<Login />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/dashboard/courses" element={<DashboardCourses />} />
-                  <Route path="/dashboard/testimonials" element={<DashboardTestimonials />} />
-                  {/* Add more routes as needed */}
-                </Routes>
-              </Suspense>
-              <Newsletter />
-              <Footer />
-            </div>
-          </Router>
-        </ErrorBoundary>
+        <AuthProvider>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <Router>
+              <div className="bg-gray-50 min-h-screen">
+                <Navbar />
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/courses" element={<Courses />} />
+                    <Route path="/courses/:courseId" element={<CourseDetailPage />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/certificate-verification" element={<CertificationVerificationPage />} />
+                    <Route path="/activities" element={<Activities />} />
+                    <Route path="/offers-and-schemes" element={<OffersAndSchemes />} />
+                    <Route path="/dashboard-login" element={<Login />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/dashboard/courses" element={<DashboardCourses />} />
+                    <Route path="/dashboard/testimonials" element={<DashboardTestimonials />} />
+                    {/* Add more routes as needed */}
+                  </Routes>
+                </Suspense>
+                <Newsletter />
+                <Footer />
+              </div>
+            </Router>
+          </ErrorBoundary>
+        </AuthProvider>
       </QueryClientProvider>
     </HelmetProvider>
   );

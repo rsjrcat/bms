@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Clock, Users, DollarSign, Award, CheckCircle, Star, Calendar, BookOpen, Target, Trophy } from 'lucide-react';
+import { db } from '../lib/supabase';
 
 const CourseDetailPage = () => {
     const [activeTab, setActiveTab] = useState('overview');
@@ -13,15 +14,21 @@ const CourseDetailPage = () => {
         setLoading(true);
         setError(null);
 
-        fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses/${courseId}`)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`Failed to fetch course data: ${res.statusText}`);
+        db.getCourseByCode(courseId)
+            .then(({ data, error }) => {
+                if (error) {
+                    throw new Error(error.message);
                 }
-                return res.json();
-            })
-            .then(data => {
-                setCourseData(data);
+                
+                // Transform data to match existing structure
+                const transformedData = {
+                    ...data,
+                    title: data.course_name,
+                    totalStudents: data.students,
+                    category: data.course_categories?.category
+                };
+                
+                setCourseData(transformedData);
                 setLoading(false);
             })
             .catch(err => {

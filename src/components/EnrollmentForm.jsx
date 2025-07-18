@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { User, Mail, Phone, BookOpen, Calendar } from 'lucide-react';
+import { db } from '../lib/supabase';
 
 const EnrollmentForm = ({ courseId, onClose }) => {
   const [formData, setFormData] = useState({
@@ -13,11 +14,32 @@ const EnrollmentForm = ({ courseId, onClose }) => {
   });
 
   const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-    // Close the modal
-    if (onClose) onClose();
+    
+    try {
+      const enrollmentData = {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        education: formData.education,
+        course_id: courseId, // This should be the course UUID, not course_code
+        start_date: formData.startDate
+      };
+      
+      const { data, error } = await db.createEnrollment(enrollmentData);
+      
+      if (error) {
+        throw new Error(error.message);
+      }
+      
+      alert('Enrollment submitted successfully! We will contact you soon.');
+      if (onClose) onClose();
+    } catch (error) {
+      console.error('Error submitting enrollment:', error);
+      alert('Failed to submit enrollment. Please try again.');
+    }
   };
 
   const handleChange = (e) => {

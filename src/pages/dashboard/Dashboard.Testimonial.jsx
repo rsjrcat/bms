@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Star, Image as ImageIcon, X, Check } from 'lucide-react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import { db } from '../../lib/supabase';
 
 const DashboardTestimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -24,13 +24,10 @@ const DashboardTestimonials = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });
-        setTestimonials(response.data);
+        const { data, error } = await db.getTestimonials();
+        if (error) throw new Error(error.message);
+        
+        setTestimonials(data);
         setLoading(false);
       } catch (err) {
         console.error('Error fetching testimonials:', err);
@@ -80,31 +77,21 @@ const DashboardTestimonials = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('token');
-      
       if (isEditing) {
-        await axios.put(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials/${currentTestimonial._id}`, formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });
+        const { error } = await db.updateTestimonial(currentTestimonial.id, formData);
+        if (error) throw new Error(error.message);
         toast.success('Testimonial updated successfully');
       } else {
-        await axios.post(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials`, formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });
+        const { error } = await db.createTestimonial(formData);
+        if (error) throw new Error(error.message);
         toast.success('Testimonial added successfully');
       }
 
       // Refresh testimonials list
-      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
-      });
-      setTestimonials(response.data);
+      const { data, error } = await db.getTestimonials();
+      if (!error) {
+        setTestimonials(data);
+      }
 
       resetForm();
     } catch (err) {
@@ -131,14 +118,10 @@ const DashboardTestimonials = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this testimonial?')) {
       try {
-        const token = localStorage.getItem('token');
-        await axios.delete(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });
+        const { error } = await db.deleteTestimonial(id);
+        if (error) throw new Error(error.message);
         
-        setTestimonials(testimonials.filter(t => t._id !== id));
+        setTestimonials(testimonials.filter(t => t.id !== id));
         toast.success('Testimonial deleted successfully');
       } catch (err) {
         console.error('Error deleting testimonial:', err);
@@ -335,6 +318,7 @@ const DashboardTestimonials = () => {
             {testimonials.map((testimonial) => (
               <div 
                 key={testimonial._id} 
+                key={testimonial.id} 
                 className={`bg-white rounded-lg shadow-md overflow-hidden ${testimonial.isFeatured ? 'ring-2 ring-blue-500' : ''}`}
               >
                 {testimonial.image && (
@@ -372,7 +356,7 @@ const DashboardTestimonials = () => {
                       <Edit className="h-4 w-4" />
                     </button>
                     <button
-                      onClick={() => handleDelete(testimonial._id)}
+                      onClick={() => handleDelete(testimonial.id)}
                       className="text-red-600 hover:text-red-800 p-1"
                       title="Delete"
                     >

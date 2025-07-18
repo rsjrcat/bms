@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, MessageSquare } from 'lucide-react';
 import banner from '../assets/banners/contact.jpg';
 import Header from '../components/common/Header';
+import { db } from '../lib/supabase';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -62,17 +63,9 @@ export default function Contact() {
     }
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
+      const { data, error } = await db.createContactMessage(formData);
       
-      if (response.ok) {
+      if (!error) {
         setSubmitStatus({ 
           success: true, 
           message: 'Message sent successfully! We will get back to you soon.' 
@@ -85,7 +78,7 @@ export default function Contact() {
           message: ''
         });
       } else {
-        throw new Error(data.error || 'Failed to send message. Please try again later.');
+        throw new Error(error.message || 'Failed to send message. Please try again later.');
       }
     } catch (error) {
       console.error('Error:', error);

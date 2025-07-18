@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronDown, User } from 'lucide-react';
+import { useAuth } from '../hooks/useAuth';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
 
-  const adminName = 'Alice';
+  const adminName = user?.user_metadata?.name || user?.email?.split('@')[0] || 'Admin';
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
+    if (!user) {
       navigate('/dashboard-login');
     }
-  }, [navigate]);
+  }, [user, navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login-dashboard');
+    signOut();
+    navigate('/dashboard-login');
   };
 
   const cards = [

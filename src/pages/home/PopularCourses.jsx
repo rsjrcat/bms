@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AvatarGroup from '../../components/AvatarGroup';
 import Modal from '../../components/Modal';
 import EnrollmentForm from '../../components/EnrollmentForm';
+import { db } from '../../lib/supabase';
 
 
 const PopularCourses = () => {
@@ -21,20 +22,15 @@ const PopularCourses = () => {
   useEffect(() => {
     async function fetchCourses() {
       try {
-        const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses`);
-        if (!res.ok) throw new Error('Failed to fetch courses');
-        const data = await res.json();
+        const { data, error } = await db.getCourses();
+        if (error) throw new Error(error.message);
 
 
-        // Assuming your backend returns an array of categories with courses:
-        // e.g. [{ category: 'Design', courses: [...] }, ...]
-        // Flatten courses and attach category as in your original code:
-        const flattened = data.flatMap(category =>
-          category.courses.map(course => ({
+        // Transform data to match existing structure
+        const flattened = data.map(course => ({
             ...course,
-            category: category.category,
-          }))
-        );
+            category: course.course_categories?.category || 'Uncategorized'
+        }));
 
 
         setAllCourses(flattened);

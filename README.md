@@ -1,12 +1,61 @@
-# React + Vite
+# BMS Academy - Supabase Edition
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the BMS Academy application built with React, Vite, and Supabase as the backend.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Course management system
+- Student testimonials
+- Contact form submissions
+- Admin dashboard
+- Authentication with Supabase Auth
+- Real-time data with Supabase Database
 
-## Expanding the ESLint configuration
+## Setup Instructions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Set up Supabase Project**
+   - Create a new project at [supabase.com](https://supabase.com)
+   - Copy your project URL and anon key
+   - Run the migrations in the `supabase/migrations` folder
+
+2. **Environment Variables**
+   - Copy `.env.example` to `.env`
+   - Fill in your Supabase credentials:
+     ```
+     VITE_SUPABASE_URL=your_supabase_project_url
+     VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+     ```
+
+3. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+4. **Run Development Server**
+   ```bash
+   npm run dev
+   ```
+
+## Database Schema
+
+The application uses the following main tables:
+- `admins` - Admin user accounts
+- `course_categories` - Course categories
+- `courses` - Course information
+- `testimonials` - Student testimonials
+- `contact_messages` - Contact form submissions
+- `enrollments` - Course enrollment records
+
+## Authentication
+
+The app uses Supabase Auth for admin authentication. Admin users can:
+- Manage courses and categories
+- View and respond to contact messages
+- Manage testimonials
+- View enrollment data
+
+## Deployment
+
+1. Build the project: `npm run build`
+2. Deploy the `dist` folder to your hosting provider
+3. Make sure to set the environment variables in your hosting platform

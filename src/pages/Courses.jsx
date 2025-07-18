@@ -5,6 +5,7 @@ import img1 from "../assets/banners/courses.png";
 import { Link } from 'react-router-dom';
 import Modal from '../components/Modal';
 import EnrollmentForm from '../components/EnrollmentForm';
+import { db } from '../lib/supabase';
 
 export default function Courses() {
   const [allCourses, setAllCourses] = useState([]);
@@ -19,16 +20,14 @@ export default function Courses() {
   useEffect(() => {
     async function fetchCourses() {
       try {
-        const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/courses`);
-        if (!res.ok) throw new Error('Failed to fetch courses');
-        const data = await res.json();
+        const { data, error } = await db.getCourses();
+        if (error) throw new Error(error.message);
 
-        const flattened = data.flatMap(group =>
-          group.courses.map(course => ({
+        // Transform data to match existing structure
+        const flattened = data.map(course => ({
             ...course,
-            category: group.category
-          }))
-        );
+            category: course.course_categories?.category || 'Uncategorized'
+        }));
 
         setAllCourses(flattened);
         setLoading(false);

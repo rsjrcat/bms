@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Star } from "lucide-react";
+import { db } from "../../lib/supabase";
 
 export default function CoachingTestimonials() {
   const [testimonials, setTestimonials] = useState([]);
@@ -9,9 +10,9 @@ export default function CoachingTestimonials() {
   useEffect(() => {
     async function fetchTestimonials() {
       try {
-        const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/testimonials`); // adjust base URL as needed
-        if (!res.ok) throw new Error("Failed to fetch testimonials");
-        const data = await res.json();
+        const { data, error } = await db.getTestimonials();
+        if (error) throw new Error(error.message);
+        
         setTestimonials(data);
         setLoading(false);
       } catch (err) {
